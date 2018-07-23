@@ -22,17 +22,14 @@ int main(int argc, char *argv[]){
   if(!(logFile = fopen(NAME_LOG, "a")))
     logFile = fopen(NAME_LOG, "w");
   fd = open((char*) argv[1], O_RDONLY | O_NONBLOCK);
-  contador = 0;
   while(1){
     bytes = read(fd, &data, sizeof(data));
     if(bytes > 0 && data.type == 0x01 && data.value == 1){
       fwrite(&data.code, sizeof(data.code), 1, logFile);
-      if(contador == 10){
-        fclose(logFile);
-        logFile = fopen(NAME_LOG, "a");
-        contador = 0;
-      }
-      contador++;
+      fclose(logFile);
+      printf("%x %d\n", data.code, data.code);
+      logFile = fopen(NAME_LOG, "a");
+      /*fflush(stdout);*/
     }
   }
   return 0;
