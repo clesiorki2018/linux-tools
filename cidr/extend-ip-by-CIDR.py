@@ -7,6 +7,8 @@
 # extends a IP/CIDR in yours IPs 
 # only ipv4
 #
+# License GPLv3
+#
 # Example: python3 extend-ip-by-CIDR.py 192.168.0.0/24
 
 import sys
